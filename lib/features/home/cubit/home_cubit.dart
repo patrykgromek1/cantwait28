@@ -20,12 +20,12 @@ class HomeCubit extends Cubit<HomeState> {
       (items) {
         final itemModels = items.docs.map((doc) {
           return ItemModel(
-            title: doc('title'),
-            imageURL: doc('image_url'),
-            releaseDate: doc('release_date'),
+            title: doc['title'],
+            imageURL: doc['image_url'],
+            releaseDate: doc['release_date'],
           );
-        });
-        emit(HomeState(items: items));
+        }).toList();
+        emit(HomeState(items: itemModels));
       },
     )..onError(
         (error) {
